@@ -1,0 +1,2985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspiring Cloud Engineer | AWS & DevOps Enthusiast</title>
+    <meta name="description" content="Fresh graduate passionate about Cloud Computing, AWS, Linux, and DevOps. Eager to start my career in cloud infrastructure.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           GLOBAL RESET & BASE STYLES
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color Palette */
+            --primary-dark: #0a0e27;
+            --secondary-dark: #151b3d;
+            --accent-blue: #00d4ff;
+            --accent-cyan: #00ffff;
+            --accent-purple: #7c3aed;
+            --accent-pink: #ec4899;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+            
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1);
+            }
+        }
+
+        /* Particle Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Glass Morphism Card */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-blue);
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: var(--spacing-sm) 0;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: all var(--transition-normal);
+        }
+
+        .navbar.scrolled {
+            padding: var(--spacing-xs) 0;
+            background: rgba(10, 14, 39, 0.95);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-md);
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            transition: all var(--transition-fast);
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--accent-blue);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: var(--spacing-xs);
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: var(--text-primary);
+            border-radius: 3px;
+            transition: all var(--transition-normal);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(21, 27, 61, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                padding: var(--spacing-lg);
+                transition: right var(--transition-normal);
+                border-left: 1px solid var(--glass-border);
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-link {
+                font-size: 1.2rem;
+                padding: var(--spacing-sm);
+            }
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: var(--spacing-xl) 0;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 800;
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.1;
+        }
+
+        .hero-title .name {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            font-weight: 300;
+        }
+
+        .rotating-text {
+            display: inline-block;
+            color: var(--accent-blue);
+            font-weight: 600;
+            min-width: 200px;
+            text-align: left;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto var(--spacing-lg);
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: var(--text-primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: var(--glass-bg);
+            color: var(--text-primary);
+            border: 2px solid var(--accent-blue);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-blue);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Ripple Effect */
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        .scroll-indicator::before {
+            content: '↓';
+            font-size: 2rem;
+            color: var(--accent-blue);
+        }
+
+        /* ============================================
+           SECTION STYLES
+           ============================================ */
+        section {
+            padding: var(--spacing-xl) 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: var(--spacing-sm);
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           ABOUT SECTION
+           ============================================ */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        .about-text {
+            animation: slideInLeft 1s ease;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--accent-blue);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-top: var(--spacing-xs);
+        }
+
+        .about-visual {
+            position: relative;
+            animation: slideInRight 1s ease;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .learning-cards {
+            display: grid;
+            gap: var(--spacing-md);
+        }
+
+        .learning-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            transition: all var(--transition-normal);
+        }
+
+        .learning-card:hover {
+            transform: translateX(10px);
+            border-color: var(--accent-blue);
+        }
+
+        .learning-card h4 {
+            color: var(--accent-blue);
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .learning-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* ============================================
+           SKILLS SECTION
+           ============================================ */
+        .skills-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skills-tabs {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 1rem 2rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            backdrop-filter: blur(10px);
+        }
+
+        .tab-button:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-blue);
+        }
+
+        .tab-button.active {
+            background: var(--accent-blue);
+            color: var(--text-primary);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .skill-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .skill-card:hover::before {
+            left: 100%;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .skill-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .skill-level {
+            font-size: 0.9rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: var(--secondary-dark);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+            border-radius: 10px;
+            transition: width 1s ease;
+            box-shadow: 0 0 10px var(--accent-blue);
+        }
+
+        .skill-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+            margin-top: var(--spacing-sm);
+        }
+
+        .skill-tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--accent-blue);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+        }
+
+        /* ============================================
+           PROJECTS SECTION
+           ============================================ */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .project-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-blue);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            padding: var(--spacing-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-type {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-body {
+            padding: var(--spacing-md);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .tech-badge {
+            padding: 0.4rem 0.9rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--accent-blue);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            font-weight: 500;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-small {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            overflow-y: auto;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-md);
+        }
+
+        .modal-content {
+            background: var(--secondary-dark);
+            border: 2px solid var(--accent-blue);
+            border-radius: var(--radius-lg);
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideUp 0.4s ease;
+        }
+
+        @keyframes modalSlideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--accent-blue);
+            transform: rotate(90deg);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            padding: var(--spacing-lg);
+        }
+
+        .modal-body {
+            padding: var(--spacing-lg);
+        }
+
+        .modal-section {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .modal-section h3 {
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .modal-section p,
+        .modal-section li {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .modal-section ul {
+            list-style-position: inside;
+            padding-left: var(--spacing-md);
+        }
+
+        /* ============================================
+           TIMELINE SECTION
+           ============================================ */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: var(--spacing-lg) auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-blue), var(--accent-purple));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: var(--spacing-lg);
+            width: calc(50% - 40px);
+            animation: fadeIn 1s ease;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: calc(50% + 40px);
+            text-align: left;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-blue);
+            border: 4px solid var(--primary-dark);
+border-radius: 50%;
+box-shadow: 0 0 20px var(--accent-blue);
+top: 0;
+}
+    .timeline-item:nth-child(odd) .timeline-dot {
+        right: -50px;
+    }
+
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: -50px;
+    }
+
+    .timeline-content {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-md);
+        transition: all var(--transition-normal);
+    }
+
+    .timeline-content:hover {
+        transform: scale(1.05);
+        border-color: var(--accent-blue);
+        box-shadow: var(--shadow-glow);
+    }
+
+    .timeline-date {
+        color: var(--accent-blue);
+        font-weight: 600;
+        margin-bottom: var(--spacing-xs);
+        font-size: 0.9rem;
+    }
+
+    .timeline-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .timeline-institution {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .timeline-description {
+        color: var(--text-secondary);
+        line-height: 1.7;
+    }
+
+    /* ============================================
+       CERTIFICATIONS SECTION
+       ============================================ */
+    .certifications-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-md);
+        margin-top: var(--spacing-lg);
+    }
+
+    .cert-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-md);
+        text-align: center;
+        transition: all var(--transition-normal);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cert-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity var(--transition-normal);
+    }
+
+    .cert-card:hover::before {
+        opacity: 1;
+    }
+
+    .cert-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--accent-blue);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .cert-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto var(--spacing-md);
+        background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .cert-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: var(--spacing-sm);
+        position: relative;
+        z-index: 1;
+    }
+
+    .cert-issuer {
+        color: var(--accent-blue);
+        font-weight: 600;
+        margin-bottom: var(--spacing-sm);
+        position: relative;
+        z-index: 1;
+    }
+
+    .cert-status {
+        display: inline-block;
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-top: var(--spacing-sm);
+        position: relative;
+        z-index: 1;
+    }
+
+    .status-progress {
+        background: rgba(251, 191, 36, 0.2);
+        border: 1px solid var(--warning-orange);
+        color: var(--warning-orange);
+    }
+
+    .status-planned {
+        background: rgba(124, 58, 237, 0.2);
+        border: 1px solid var(--accent-purple);
+        color: var(--accent-purple);
+    }
+
+    /* ============================================
+       CONTACT SECTION
+       ============================================ */
+    .contact-container {
+        max-width: 800px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .contact-item {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-md);
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md);
+        transition: all var(--transition-normal);
+    }
+
+    .contact-item:hover {
+        transform: translateX(10px);
+        border-color: var(--accent-blue);
+        box-shadow: var(--shadow-glow);
+    }
+
+    .contact-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+    .contact-details h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .contact-details a {
+        color: var(--accent-cyan);
+        text-decoration: none;
+        transition: color var(--transition-fast);
+    }
+
+    .contact-details a:hover {
+        color: var(--accent-blue);
+    }
+
+    .contact-form {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+    }
+
+    .form-group {
+        margin-bottom: var(--spacing-md);
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: var(--spacing-xs);
+        color: var(--text-primary);
+        font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: var(--spacing-sm);
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-sm);
+        color: var(--text-primary);
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        transition: all var(--transition-fast);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--accent-blue);
+        box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+    }
+
+    .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    .social-links {
+        display: flex;
+        gap: var(--spacing-sm);
+        margin-top: var(--spacing-md);
+    }
+
+    .social-link {
+        width: 50px;
+        height: 50px;
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-primary);
+        text-decoration: none;
+        font-size: 1.3rem;
+        transition: all var(--transition-fast);
+    }
+
+    .social-link:hover {
+        background: var(--accent-blue);
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-glow);
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    footer {
+        background: var(--secondary-dark);
+        border-top: 1px solid var(--glass-border);
+        padding: var(--spacing-lg) 0;
+        margin-top: var(--spacing-xl);
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--spacing-lg);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .footer-section h3 {
+        color: var(--accent-blue);
+        margin-bottom: var(--spacing-md);
+        font-size: 1.2rem;
+    }
+
+    .footer-section p,
+    .footer-section a {
+        color: var(--text-secondary);
+        line-height: 1.8;
+        text-decoration: none;
+        transition: color var(--transition-fast);
+    }
+
+    .footer-section a:hover {
+        color: var(--accent-blue);
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+
+    .status-indicators {
+        display: flex;
+        gap: var(--spacing-md);
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .status-item {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        padding: 0.5rem 1rem;
+        background: var(--glass-bg);
+        border-radius: 20px;
+        font-size: 0.9rem;
+    }
+
+    .status-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--success-green);
+        box-shadow: 0 0 10px var(--success-green);
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+        }
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: var(--spacing-md);
+        border-top: 1px solid var(--glass-border);
+        color: var(--text-secondary);
+    }
+
+    /* ============================================
+       RESPONSIVE DESIGN
+       ============================================ */
+    @media (max-width: 1024px) {
+        .about-content {
+            grid-template-columns: 1fr;
+        }
+
+        .timeline::before {
+            left: 30px;
+        }
+
+        .timeline-item {
+            width: calc(100% - 80px);
+            left: 60px !important;
+            text-align: left !important;
+        }
+
+        .timeline-item .timeline-dot {
+            left: -50px !important;
+        }
+
+        .contact-container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+        :root {
+            --spacing-lg: 3rem;
+            --spacing-xl: 4rem;
+        }
+
+        .hero {
+            min-height: 80vh;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .about-stats {
+            grid-template-columns: 1fr;
+        }
+
+        .skills-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .projects-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .certifications-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+    }
+
+    /* ============================================
+       UTILITY CLASSES
+       ============================================ */
+    .text-gradient {
+        background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--primary-dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--accent-blue);
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-cyan);
+    }
+
+    /* Selection */
+    ::selection {
+        background: var(--accent-blue);
+        color: var(--text-primary);
+    }
+</style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <div class="logo" onclick="scrollToSection('hero')">CloudFresher</div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#hero" class="nav-link active">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#education" class="nav-link">Education</a></li>
+            <li><a href="#certifications" class="nav-link">Learning</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Hi, I'm <span class="name">Deepak Joshi</span>
+            </h1>
+            <h2 class="hero-subtitle">
+                Aspiring Cloud Engineer | <span class="rotating-text" id="rotatingText">AWS Enthusiast</span>
+            </h2>
+            <p class="hero-description">
+                Fresh graduate passionate about cloud computing, AWS services, Linux systems, and DevOps practices. 
+                Eager to kickstart my career in cloud infrastructure and learn from industry experts. 
+                Currently building hands-on projects and pursuing AWS certifications to strengthen my skills.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">View My Projects</a>
+                <a href="#contact" class="btn btn-secondary">Let's Connect</a>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator"></div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">Fresh graduate ready to make an impact in cloud engineering</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>My Journey</h3>
+                <p>
+                    I'm a pursuing BCA graduate degree with a passion for cloud computing and DevOps. 
+                    my fascination with AWS and how cloud platforms power modern applications. I love learning about 
+                    infrastructure, networking, and automation.
+                </p>
+                <p>
+                    While I'm at the beginning of my professional journey, I've dedicated myself to hands-on learning 
+                    through personal projects, online courses, and lab environments. I'm excited to bring my enthusiasm, 
+                    fresh perspective, and willingness to learn to a team where I can grow as a cloud engineer.
+                </p>
+                <p>
+                    I'm currently pursuing AWS Solutions Architect certification and working on practical projects to 
+                    strengthen my understanding of cloud services, Linux administration, and networking fundamentals.
+                </p>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">2026</div>
+                        <div class="stat-label">Graduating</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">AWS</div>
+                        <div class="stat-label">Learning</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Motivated</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="learning-cards">
+                    <div class="learning-card">
+                        <h4>🎓 Continuous Learner</h4>
+                        <p>
+                            Always exploring new AWS services, watching tutorials, reading documentation, and practicing 
+                            in hands-on labs. I believe in learning by doing and building real projects.
+                        </p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>💡 Problem Solver</h4>
+                        <p>
+                            I enjoy troubleshooting issues, figuring out why things work the way they do, and finding 
+                            solutions. Every error message is a learning opportunity.
+                        </p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>🤝 Team Player</h4>
+                        <p>
+                            Eager to collaborate, learn from experienced professionals, and contribute fresh ideas. 
+                            I'm open to feedback and committed to continuous improvement.
+                        </p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>🚀 Career Ready</h4>
+                        <p>
+                            Looking for an entry-level position or internship where I can apply my knowledge, grow my 
+                            skills, and contribute to building reliable cloud infrastructure.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">My Skills</h2>
+            <p class="section-subtitle">Technical skills I'm learning and developing</p>
+        </div>
+        <div class="skills-container">
+            <div class="skills-tabs">
+                <button class="tab-button active" data-tab="cloud">☁️ AWS Basics</button>
+                <button class="tab-button" data-tab="networking">🌐 Networking</button>
+                <button class="tab-button" data-tab="linux">🐧 Linux</button>
+                <button class="tab-button" data-tab="programming">💻 Programming</button>
+            </div>
+
+            <!-- Cloud & AWS Tab -->
+            <div class="tab-content active" id="cloud">
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">Amazon EC2</span>
+                            <span class="skill-level">Learning</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 65%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Understanding EC2 instance types, launching instances, connecting via SSH, basic security groups, 
+                            and creating simple web servers. Working on hands-on labs to improve.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Instances</span>
+                            <span class="skill-tag">SSH</span>
+                            <span class="skill-tag">Security Groups</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">Amazon S3</span>
+                            <span class="skill-level">Learning</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Creating buckets, uploading files, understanding storage classes, basic bucket policies, 
+                            and static website hosting. Practiced through AWS Free Tier.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Buckets</span>
+                            <span class="skill-tag">Storage</span>
+                            <span class="skill-tag">Policies</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">VPC Basics</span>
+                            <span class="skill-level">Foundational</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 50%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Learning about Virtual Private Clouds, subnets, route tables, Internet Gateways, and basic 
+                            network isolation. Following tutorials and documentation.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Subnets</span>
+                            <span class="skill-tag">Routing</span>
+                            <span class="skill-tag">Security</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">IAM Basics</span>
+                            <span class="skill-level">Learning</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 60%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Understanding users, groups, roles, and policies. Learning about least privilege access 
+                            and MFA. Practicing with hands-on labs.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Users & Groups</span>
+                            <span class="skill-tag">Policies</span>
+                            <span class="skill-tag">MFA</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">RDS Fundamentals</span>
+                            <span class="skill-level">Beginner</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 45%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Learning about managed databases, creating RDS instances, connecting applications to databases, 
+                            and understanding backups. Still exploring.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">Backups</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">CloudWatch Basics</span>
+                            <span class="skill-level">Beginner</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 40%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Understanding basic monitoring, viewing logs, creating simple alarms for EC2 instances. 
+                            Exploring dashboard creation and metrics.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Monitoring</span>
+                            <span class="skill-tag">Logs</span>
+                            <span class="skill-tag">Alarms</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Networking Tab -->
+            <div class="tab-content" id="networking">
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">TCP/IP Basics</span>
+                            <span class="skill-level">Learning</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 60%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Understanding IP addresses, TCP vs UDP, ports, and basic network communication. 
+                            Learning through online courses and practice labs.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">IP Addressing</span>
+                            <span class="skill-tag">Protocols</span>
+                            <span class="skill-tag">Ports</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">Subnetting</span>
+                            <span class="skill-level">Learning</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 55%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Learning CIDR notation, calculating subnet masks, understanding network and broadcast addresses. 
+                            Practicing with subnet calculators and exercises.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">CIDR</span>
+                            <span class="skill-tag">Subnet Masks</span>
+                            <span class="skill-tag">IP Ranges</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">DNS Basics</span>
+                            <span class="skill-level">Beginner</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 50%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Understanding how DNS works, domain names, A records, CNAME records. Learning about 
+                            Route 53 basics through tutorials.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Domain Names</span>
+                            <span class="skill-tag">DNS Records</span>
+                            <span class="skill-tag">Resolution</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">Firewall Concepts</span>
+                            <span class="skill-level">Learning</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 58%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Understanding security groups, network ACLs, allow/deny rules, inbound and outbound traffic. 
+                            Practicing with AWS security configurations.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Security Groups</span>
+                            <span class="skill-tag">NACLs</span>
+                            <span class="skill-tag">Rules</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">HTTP/HTTPS</span>
+                            <span class="skill-level">Learning</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 65%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Understanding web protocols, SSL/TLS certificates, how browsers communicate with servers. 
+                            Configured HTTPS on practice projects.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">HTTP</span>
+                            <span class="skill-tag">SSL/TLS</span>
+                            <span class="skill-tag">Certificates</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">Load Balancing Basics</span>
+                            <span class="skill-level">Beginner</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 45%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Learning about distributing traffic across servers, health checks, and basic load balancer 
+                            concepts. Explored AWS ALB through tutorials.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Traffic Distribution</span>
+                            <span class="skill-tag">Health Checks</span>
+                            <span class="skill-tag">ALB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Linux & Servers Tab -->
+            <div class="tab-content" id="linux">
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">Linux Command Line</span>
+                            <span class="skill-level">Learning</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Comfortable with basic commands (ls, cd, cp, mv, rm), file navigation, permissions (chmod, chown), 
+                            and text manipulation (cat, grep, awk). Practicing daily.
+                        </p>
+11:51
+                        <div class="skill-tags">
+                            <span class="skill-tag">Bash Commands</span>
+                            <span class="skill-tag">File System</span>
+                            <span class="skill-tag">Permissions</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">Package Management</span>
+                            <span class="skill-level">Learning</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 60%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Understanding apt (Ubuntu) and yum (RHEL) for installing software, updating systems, 
+                            and managing packages. Practiced on EC2 instances.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">apt</span>
+                            <span class="skill-tag">yum</span>
+                            <span class="skill-tag">Updates</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">Apache Web Server</span>
+                            <span class="skill-level">Beginner</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 55%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Learning to install Apache, serve web pages, configure basic settings, and troubleshoot 
+                            common issues. Built a few practice websites.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Apache</span>
+                            <span class="skill-tag">Web Hosting</span>
+                            <span class="skill-tag">Configuration</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">SSH & Remote Access</span>
+                            <span class="skill-level">Learning</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 68%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Connecting to servers via SSH, using key pairs, basic security practices. Regularly 
+                            access EC2 instances for practice.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">SSH Keys</span>
+                            <span class="skill-tag">Remote Login</span>
+                            <span class="skill-tag">Security</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">Basic Shell Scripting</span>
+                            <span class="skill-level">Beginner</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 50%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Writing simple bash scripts for automation tasks, loops, conditionals. Learning to make 
+                            repetitive tasks easier.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Bash</span>
+                            <span class="skill-tag">Automation</span>
+                            <span class="skill-tag">Scripts</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">System Monitoring</span>
+                            <span class="skill-level">Beginner</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 48%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Learning to use top, htop, df, du for monitoring CPU, memory, and disk usage. Understanding 
+                            system resource management.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">top/htop</span>
+                            <span class="skill-tag">Resources</span>
+                            <span class="skill-tag">Monitoring</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Programming Tab -->
+            <div class="tab-content" id="programming">
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">C Programming</span>
+                            <span class="skill-level">Academic + Practical</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Learned C during college - basics, loops, functions, pointers, arrays, structures. 
+                            Completed academic projects and assignments.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Basics</span>
+                            <span class="skill-tag">Pointers</span>
+                            <span class="skill-tag">Data Structures</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">C++</span>
+                            <span class="skill-level">College Level</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 65%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Studied C++ fundamentals, OOP concepts, classes, inheritance. Built simple programs 
+                            during coursework.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">OOP</span>
+                            <span class="skill-tag">Classes</span>
+                            <span class="skill-tag">Basics</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">Python Basics</span>
+                            <span class="skill-level">Learning</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 55%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Self-learning Python for automation scripts and AWS SDK (boto3). Understanding syntax, 
+                            functions, and basic file handling.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Syntax</span>
+                            <span class="skill-tag">Scripts</span>
+                            <span class="skill-tag">Boto3</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">Git & Version Control</span>
+                            <span class="skill-level">Learning</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 60%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Learning Git commands (add, commit, push, pull), using GitHub for storing projects. 
+                            Understanding branches and basic workflows.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">GitHub</span>
+                            <span class="skill-tag">Version Control</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">HTML & CSS</span>
+                            <span class="skill-level">Basic</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 58%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Created simple websites during college and personal projects. Understanding HTML structure 
+                            and CSS styling basics.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">Web Basics</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">YAML & JSON</span>
+                            <span class="skill-level">Learning</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 52%"></div>
+                        </div>
+                        <p class="skill-description">
+                            Learning to read and write YAML for configuration files and JSON for APIs and AWS policies. 
+                            Understanding data structures.
+                        </p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">YAML</span>
+                            <span class="skill-tag">JSON</span>
+                            <span class="skill-tag">Configuration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">My Learning Projects</h2>
+            <p class="section-subtitle">Hands-on projects I've built while learning AWS and cloud concepts</p>
+        </div>
+        
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card" onclick="openModal('modal1')">
+                <div class="project-header">
+                    <h3 class="project-title">My First EC2 Web Server</h3>
+                    <p class="project-type">AWS Learning Project</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Launched my first EC2 instance, connected via SSH, installed Apache web server, and hosted 
+                        a simple HTML website. Learned about security groups and public IPs.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">EC2</span>
+                        <span class="tech-badge">Apache</span>
+                        <span class="tech-badge">Linux</span>
+                        <span class="tech-badge">Security Groups</span>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn btn-primary btn-small">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card" onclick="openModal('modal2')">
+                <div class="project-header">
+                    <h3 class="project-title">S3 Static Website Hosting</h3>
+                    <p class="project-type">AWS Storage Project</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Created an S3 bucket, uploaded HTML/CSS files, enabled static website hosting, and made it 
+                        publicly accessible. Learned about bucket policies and website endpoints.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">S3</span>
+                        <span class="tech-badge">Static Hosting</span>
+                        <span class="tech-badge">Bucket Policies</span>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn btn-primary btn-small">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card" onclick="openModal('modal3')">
+                <div class="project-header">
+                    <h3 class="project-title">Basic VPC Setup</h3>
+                    <p class="project-type">Networking Practice</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Created a custom VPC with public and private subnets, configured route tables, and attached 
+                        an Internet Gateway. Deployed EC2 in public subnet to test connectivity.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">VPC</span>
+                        <span class="tech-badge">Subnets</span>
+                        <span class="tech-badge">IGW</span>
+                        <span class="tech-badge">Route Tables</span>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn btn-primary btn-small">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card" onclick="openModal('modal4')">
+                <div class="project-header">
+                    <h3 class="project-title">Security Groups Practice</h3>
+                    <p class="project-type">Security Learning</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Configured security groups to allow only specific ports (SSH, HTTP, HTTPS), tested access rules, 
+                        and learned about inbound/outbound traffic filtering.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Security Groups</span>
+                        <span class="tech-badge">Firewall Rules</span>
+                        <span class="tech-badge">Port Configuration</span>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn btn-primary btn-small">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project-card" onclick="openModal('modal5')">
+                <div class="project-header">
+                    <h3 class="project-title">RDS Database Connection</h3>
+                    <p class="project-type">Database Practice</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Launched an RDS MySQL instance, connected from EC2 using MySQL client, created tables, 
+                        and practiced basic SQL operations. Learned about database security.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">RDS</span>
+                        <span class="tech-badge">MySQL</span>
+                        <span class="tech-badge">Database</span>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn btn-primary btn-small">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="project-card" onclick="openModal('modal6')">
+                <div class="project-header">
+                    <h3 class="project-title">CloudWatch Monitoring Setup</h3>
+                    <p class="project-type">Monitoring Practice</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Set up basic CloudWatch monitoring for EC2 instance, created CPU utilization alarm, and 
+                        configured email notifications. Learned about metrics and alarms.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">CloudWatch</span>
+                        <span class="skill-tag">Alarms</span>
+                        <span class="tech-badge">SNS</span>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn btn-primary btn-small">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modals for Projects -->
+<div class="modal" id="modal1">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal('modal1')">&times;</span>
+        <div class="modal-header">
+            <h2>My First EC2 Web Server</h2>
+            <p>AWS Learning Project - EC2 & Apache</p>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section">
+                <h3>📋 What I Built</h3>
+                <p>
+                    This project helped me understand core AWS concepts through hands-on implementation.
+ I launched an EC2 instance (Amazon Linux 2), connected 
+                    to it using SSH with a key pair, installed Apache web server, and hosted a simple HTML website. 
+                    It was exciting to see my website accessible from the internet!
+                </p>
+            </div>
+
+            <div class="modal-section">
+                <h3>🎓 What I Learned</h3>
+                <ul>
+                    <li>How to launch an EC2 instance using the AWS Console</li>
+                    <li>Choosing instance types (I used t2.micro for Free Tier)</li>
+                    <li>Creating and using SSH key pairs for secure access</li>
+                    <li>Configuring security groups to allow HTTP (port 80) and SSH (port 22)</li>
+                    <li>Installing Apache using sudo yum install httpd</li>
+                    <li>Starting the web server with sudo systemctl start httpd</li>
+                    <li>Creating simple HTML pages in /var/www/html/</li>
+                    <li>Accessing the website using the instance's public IP address</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>💡 Challenges & Solutions</h3>
+                <ul>
+                    <li><strong>Challenge:</strong> Couldn't connect via SSH initially
+                        <br><strong>Solution:</strong> Realized I forgot to add SSH (port 22) to security group. Fixed it and could connect!</li>
+                    <li><strong>Challenge:</strong> Website wasn't accessible from browser
+                        <br><strong>Solution:</strong> Security group was missing HTTP (port 80). Added it and website started working</li>
+                    <li><strong>Challenge:</strong> Apache wouldn't start
+                        <br><strong>Solution:</strong> Found I needed to use sudo. Learned about Linux permissions!</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>🚀 Next Steps</h3>
+                <p>
+                    I want to add HTTPS with SSL certificate, try connecting a database, and maybe use a load 
+                    balancer. Still learning, but this project gave me confidence!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal2">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal('modal2')">&times;</span>
+        <div class="modal-header">
+            <h2>S3 Static Website Hosting</h2>
+            <p>AWS Storage Project - S3 Bucket Configuration</p>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section">
+                <h3>📋 What I Built</h3>
+                <p>
+                    Created my first S3 bucket and used it to host a static website! Uploaded HTML, CSS, and image 
+                    files, enabled static website hosting, and made it publicly accessible. It was amazing how easy 
+                    AWS makes hosting websites.
+                </p>
+            </div>
+
+            <div class="modal-section">
+                <h3>🎓 What I Learned</h3>
+                <ul>
+                    <li>Creating S3 buckets with unique names</li>
+                    <li>Uploading files to S3 using the AWS Console</li>
+                    <li>Enabling static website hosting in bucket properties</li>
+                    <li>Setting index.html as the default document</li>
+                    <li>Configuring bucket policies to make content public</li>
+                    <li>Understanding S3 website endpoints</li>
+                    <li>Managing object permissions and ACLs</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>💡 Challenges & Solutions</h3>
+                <ul>
+                    <li><strong>Challenge:</strong> Got "403 Forbidden" error when accessing website
+                        <br><strong>Solution:</strong> Objects weren't public. Had to create a bucket policy to allow public read access</li>
+                    <li><strong>Challenge:</strong> Images weren't loading on the website
+                        <br><strong>Solution:</strong> File paths were wrong. Fixed relative paths in HTML and it worked!</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>🚀 What's Next</h3>
+                <p>
+                    I want to try adding CloudFront for faster content delivery, versioning for backup, and maybe 
+                    lifecycle policies to manage costs. Excited to learn more about S3!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal3">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal('modal3')">&times;</span>
+        <div class="modal-header">
+            <h2>Basic VPC Setup</h2>
+            <p>Networking Practice - Custom VPC Configuration</p>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section">
+                <h3>📋 What I Built</h3>
+                <p>
+                    Created my first custom VPC with public and private subnets! Set up route tables, attached an 
+                    Internet Gateway, and launched an EC2 instance in the public subnet. Networking was confusing 
+                    at first but starting to make sense now.
+                </p>
+            </div>
+
+            <div class="modal-section">
+                <h3>🎓 What I Learned</h3>
+                <ul>
+                    <li>Creating a custom VPC with CIDR block (used 10.0.0.0/16)</li>
+                    <li>Setting up public subnet (10.0.1.0/24) and private subnet (10.0.2.0/24)</li>
+                    <li>Attaching Internet Gateway to VPC for internet access</li>
+                    <li>Configuring route tables - public subnet routes to IGW</li>
+                    <li>Understanding the difference between public and private subnets</li>
+                    <li>Launching EC2 in public subnet with auto-assign public IP</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>💡 Challenges & Solutions</h3>
+                <ul>
+                    <li><strong>Challenge:</strong> EC2 in public subnet couldn't access internet
+                        <br><strong>Solution:</strong> Forgot to add route to Internet Gateway in route table. Fixed it!</li>
+                    <li><strong>Challenge:</strong> Confused about CIDR notation
+                        <br><strong>Solution:</strong> Used subnet calculator online and watched YouTube tutorials. Getting better at it!</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>🚀 Future Goals</h3>
+                <p>
+                    Want to add NAT Gateway for private subnet, learn about VPC peering, and practice with Network 
+                    ACLs. Networking is challenging but interesting!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal4">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal('modal4')">&times;</span>
+        <div class="modal-header">
+            <h2>Security Groups Practice</h2>
+            <p>Security Learning - Firewall Configuration</p>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section">
+                <h3>📋 What I Practiced</h3>
+                <p>
+                    Spent time understanding how security groups work as virtual firewalls. Created different security 
+                    groups for web servers, practiced allowing/denying traffic, and learned about inbound/outbound rules.
+                </p>
+            </div>
+
+            <div class="modal-section">
+                <h3>🎓 What I Learned</h3>
+                <ul>
+                    <li>Security groups act as instance-level firewalls</li>
+                    <li>They are stateful - return traffic is automatically allowed</li>
+                    <li>Configuring inbound rules to allow SSH (22), HTTP (80), HTTPS (443)</li>
+                    <li>Using source IP ranges (0.0.0.0/0 for public, specific IPs for restricted access)</li>
+                    <li>Best practice: Only open ports you actually need</li>
+                    <li>Testing connectivity with different security group rules</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>💡 Key Takeaways</h3>
+                <p>
+                    Security groups are really important for protecting resources. I learned to be careful about 
+                    opening ports to 0.0.0.0/0 (internet) and only allow what's necessary. Still learning about 
+                    best security practices!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal5">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal('modal5')">&times;</span>
+        <div class="modal-header">
+            <h2>RDS Database Connection</h2>
+            <p>Database Practice - RDS MySQL Setup</p>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section">
+                <h3>📋 What I Built</h3>
+                <p>
+                    Launched my first RDS database! Created a MySQL database, connected to it from an EC2 instance, 
+                    created tables, and practiced SQL queries. Databases are complex but getting the hang of it.
+                </p>
+            </div>
+
+            <div class="modal-section">
+                <h3>🎓 What I Learned</h3>
+                <ul>
+                    <li>Launching RDS MySQL instance (used db.t2.micro for Free Tier)</li>
+                    <li>Understanding database endpoints and ports</li>
+                    <li>Connecting from EC2 using mysql -h endpoint -u username -p</li>
+                    <li>Creating databases and tables with SQL</li>
+                    <li>Configuring security groups to allow MySQL port 3306</li>
+                    <li>Understanding the importance of strong database passwords</li>
+                    <li>Basic SQL commands (CREATE, INSERT, SELECT)</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>💡 Challenges & Solutions</h3>
+                <ul>
+                    <li><strong>Challenge:</strong> Couldn't connect to RDS from EC2
+                        <br><strong>Solution:</strong> RDS security group wasn't allowing traffic from EC2. Added EC2's security group as source!</li>
+                    <li><strong>Challenge:</strong> Forgot database password
+                        <br><strong>Solution:</strong> Learned about password reset. Now I save passwords securely!</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>🚀 Next Steps</h3>
+                <p>
+                    Want to learn about RDS backups, read replicas, and connecting web applications to databases. 
+                    Also interested in learning about DynamoDB!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal6">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal('modal6')">&times;</span>
+        <div class="modal-header">
+            <h2>CloudWatch Monitoring Setup</h2>
+            <p>Monitoring Practice - Basic Alarms</p>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section">
+                <h3>📋 What I Set Up</h3>
+                <p>
+                    Learned how to monitor EC2 instances using CloudWatch! Set up CPU utilization monitoring, 
+                    created an alarm that sends email when CPU goes above 80%, and explored CloudWatch dashboard.
+                </p>
+            </div>
+
+            <div class="modal-section">
+                <h3>🎓 What I Learned</h3>
+                <ul>
+                    <li>Viewing EC2 metrics in CloudWatch dashboard</li>
+                    <li>Understanding metrics like CPU utilization, network in/out, disk read/write</li>
+                    <li>Creating CloudWatch alarms with thresholds</li>
+                    <li>Setting up SNS topics for email notifications</li>
+                    <li>Subscribing to SNS topic and confirming email</li>
+                    <li>Testing alarms by generating high CPU load</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>💡 What I Realized</h3>
+                <p>
+                    Monitoring is super important! Without CloudWatch, I wouldn't know if my instances are having 
+                    problems. Alarms help catch issues early. Still learning about logs and more advanced monitoring.
+                </p>
+            </div>
+
+            <div class="modal-section">
+                <h3>🚀 Future Learning</h3>
+                <p>
+                    Want to explore CloudWatch Logs for application logging, create custom dashboards, and learn 
+                    about log insights. Monitoring seems really valuable for cloud engineers!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Education Section -->
+<section id="education">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Education</h2>
+            <p class="section-subtitle">My academic journey</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2023 - 2026</div>
+                    <h3 class="timeline-title">Bachelor of Computer Applications (BCA)</h3>
+                    <div class="timeline-institution">CCS University</div>
+                    <p class="timeline-description">
+Pursuing a Bachelor of Computer Applications (BCA) with a foundation in C, C++, data structures, databases, networking, and operating systems. Actively building hands-on experience in AWS cloud infrastructure, Linux servers, and basic system administration through practical projects.                    </p>
+                </div>
+            </div>
+  <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">September 2023 - January 2024</div>
+                    <h3 class="timeline-title">Business Process Management course</h3>
+                    <div class="timeline-institution">All India Foundation</div>
+                   <p class="timeline-description">
+Completed a BPM training program focused on Advanced Excel, data handling, and professional soft skills, including communication, teamwork, and workplace readiness.                 </p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+<div class="timeline-content">
+<div class="timeline-date">2021 - 2023</div>
+<h3 class="timeline-title">Higher Secondary (Class 12)</h3>
+<div class="timeline-institution">Angels public school</div>
+
+</div>
+</div>            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2010 - 2021</div>
+                    <h3 class="timeline-title">Secondary Education (Class 10)</h3>
+                    <div class="timeline-institution">Angels public school</div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- Certifications Section -->
+<section id="certifications">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Learning & Certifications</h2>
+            <p class="section-subtitle">My self-learning journey and certification goals</p>
+        </div>        <div class="certifications-grid">
+            <div class="cert-card">
+                <div class="cert-icon">☁️</div>
+                <h3 class="cert-title">AWS Solutions Architect Associate</h3>
+                <p class="cert-issuer">Amazon Web Services</p>
+                <p style="color: var(--text-secondary); margin: var(--spacing-sm) 0;">
+                    Currently preparing for this certification! Studying EC2, S3, VPC, IAM, RDS, and other core AWS 
+                    services. Taking online courses, doing hands-on labs, and practicing with AWS Free Tier. Planning 
+                    to attempt exam soon!
+                </p>
+                <span class="cert-status status-progress">In Progress - Target: Q2 2025</span>
+            </div>            <div class="cert-card">
+                <div class="cert-icon">🐧</div>
+                <h3 class="cert-title">Linux Basics & Administration</h3>
+                <p class="cert-issuer">Self-Learning</p>
+                <p style="color: var(--text-secondary); margin: var(--spacing-sm) 0;">
+                    Learning Linux through online resources and practice on EC2 instances. Comfortable with basic commands, 
+                    file management, and package installation. Want to get better at shell scripting and system admin tasks.
+                </p>
+                <span class="cert-status status-progress">Ongoing Learning</span>
+            </div>            <div class="cert-card">
+                <div class="cert-icon">🌐</div>
+                <h3 class="cert-title">Networking Fundamentals</h3>
+                <p class="cert-issuer">Online Courses</p>
+                <p style="color: var(--text-secondary); margin: var(--spacing-sm) 0;">
+                    Studying networking basics through YouTube and free courses. Learning about TCP/IP, subnetting, DNS, 
+                    and how networks work. Understanding AWS networking is my goal. Still a lot to learn!
+                </p>
+                <span class="cert-status status-progress">Learning Phase</span>
+            </div>            <div class="cert-card">
+                <div class="cert-icon">🎓</div>
+<h3 class="cert-title">Hands-On AWS Infrastructure Labs</h3>
+                <p class="cert-issuer">Self-Directed Practice</p>
+                <p style="color: var(--text-secondary); margin: var(--spacing-sm) 0;">
+                    Actively building and testing AWS infrastructure using EC2, VPC, subnets, route tables, security groups, IAM, S3, and CloudWatch. Focused on understanding real-world cloud architecture, networking, and security through hands-on experimentation.</p>
+                <span class="cert-status status-progress">Ongoing Practice</span>
+
+            </div>            <div class="cert-card">
+                <div class="cert-icon">🚀</div>
+                <h3 class="cert-title">DevOps Tools</h3>
+                <p class="cert-issuer">Future Learning</p>
+                <p style="color: var(--text-secondary); margin: var(--spacing-sm) 0;">
+                    Want to learn Git properly, basics of Docker containers, and CI/CD concepts. Will start after getting 
+                    comfortable with AWS fundamentals. Excited about DevOps tools!
+                </p>
+                <span class="cert-status status-planned">Future Goal</span>
+            </div>            <div class="cert-card">
+                <div class="cert-icon">💻</div>
+                <h3 class="cert-title">Python for Cloud Automation</h3>
+                <p class="cert-issuer">Self-Learning</p>
+                <p style="color: var(--text-secondary); margin: var(--spacing-sm) 0;">
+                    Learning Python to automate AWS tasks using boto3 SDK. Started with basics, now practicing simple 
+                    automation scripts. Want to get better at writing useful scripts for cloud operations.
+                </p>
+                <span class="cert-status status-progress">Learning Python</span>
+            </div>
+        </div>
+    </div>
+</section><!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">I'm open to entry-level opportunities, internships, and learning from mentors</p>
+        </div>        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <a href="mailto:deepakjoshiii807@gmail.com">deepakjoshiii807@gmail.com</a>
+                    </div>
+               
+                  
+                </div>                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h4>Location</h4>
+                        <p style="color: var(--text-secondary);">New Delhi, India</p>
+                    </div>
+                </div>                <div class="contact-item">
+                    <div class="contact-icon">💼</div>
+                    <div class="contact-details">
+                        <h4>Status</h4>
+                        <p style="color: var(--success-green);">Actively Looking for Opportunities</p>
+                    </div>
+                </div>                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/deepakjoshiii807/" class="social-link" target="_blank" title="LinkedIn">💼</a>
+                    <a href="https://github.com/shubhbuilds" class="social-link" target="_blank" title="GitHub">💻</a>
+                    <a href="mailto:deepakjoshiii807@gmail.com" class="social-link" title="Email">📧</a>
+                </div>
+            </div>     
+               <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Your Name">
+                    </div>                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                    </div>                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" required placeholder="What would you like to discuss?">
+                    </div>                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Your message..."></textarea>
+                    </div>                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section><!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Aspiring Cloud Engineer</h3>
+                <p>
+                    BCA student passionate about AWS, Linux, and cloud computing. Actively building hands-on cloud projects and preparing for entry-level roles.
+
+                </p>
+                <div class="status-indicators" style="margin-top: var(--spacing-md);">
+                    <div class="status-item">
+                        <div class="status-dot"></div>
+                        <span>Learning Daily</span>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-dot" style="background: var(--accent-blue); box-shadow: 0 0 10px var(--accent-blue);"></div>
+                        <span>Open to Opportunities</span>
+                    </div>
+                </div>
+            </div>            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#education">Education</a>
+                    <a href="#certifications">Learning</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>            <div class="footer-section">
+                <h3>Learning</h3>
+                <div class="footer-links">
+                    <a href="#skills">AWS Services</a>
+                    <a href="#skills">Linux Basics</a>
+                    <a href="#skills">Networking</a>
+                    <a href="#skills">Programming</a>
+                    <a href="#certifications">Certifications</a>
+                </div>
+            </div>            <div class="footer-section">
+                <h3>Connect</h3>
+                <p style="margin-bottom: var(--spacing-md);">
+                    I'm actively looking for entry-level cloud engineer positions or internships. Would love to 
+                    connect and learn from experienced professionals!
+                </p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/deepakjoshiii807/" class="social-link" target="_blank">💼</a>
+                    <a href="https://github.com/shubhbuilds" class="social-link" target="_blank">💻</a>
+                    <a href="mailto:deepakjoshiii807@gmail.com" class="social-link">📧</a>
+                </div>
+            </div>
+        </div>        <div class="footer-bottom">
+            <p>&copy; 2025 Cloud Fresher Portfolio. Built with passion and lots of learning!</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                Practicing AWS • Learning Every Day • Ready for Opportunities
+            </p>
+        </div>
+    </div>
+</footer><script>
+    // ============================================
+    // PARTICLE ANIMATION
+    // ============================================
+    function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 50;        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            particlesContainer.appendChild(particle);
+        }
+    }    // ============================================
+    // NAVIGATION
+    // ============================================
+    function initNavigation() {
+        const navbar = document.getElementById('navbar');
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const navLinks = document.querySelectorAll('.nav-link');        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }            let currentSection = '';
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    currentSection = section.getAttribute('id');
+                }
+            });            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    }    // ============================================
+    // ROTATING TEXT
+    // ============================================
+    function initRotatingText() {
+        const texts = [
+            'AWS Enthusiast',
+            'Linux Learner',
+            'Fresh Graduate',
+            'Cloud Explorer',
+            'Eager to Learn'
+        ];
+        let currentIndex = 0;
+        const rotatingTextElement = document.getElementById('rotatingText');        setInterval(() => {
+            currentIndex = (currentIndex + 1) % texts.length;
+            rotatingTextElement.style.opacity = '0';            setTimeout(() => {
+                rotatingTextElement.textContent = texts[currentIndex];
+                rotatingTextElement.style.opacity = '1';
+            }, 300);
+        }, 3000);
+    }    // ============================================
+    // SKILLS TABS
+    // ============================================
+    function initSkillsTabs() {
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.getAttribute('data-tab');                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));                button.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');                animateSkillBars(targetTab);
+            });
+        });        animateSkillBars('cloud');
+    }    function animateSkillBars(tabId) {
+        const activeTab = document.getElementById(tabId);
+        const skillBars = activeTab.querySelectorAll('.skill-progress');        skillBars.forEach((bar, index) => {
+            const targetWidth = bar.style.width;
+            bar.style.width = '0';            setTimeout(() => {
+                bar.style.width = targetWidth;
+            }, index * 100);
+        });
+    }    // ============================================
+    // MODAL FUNCTIONS
+    // ============================================
+    function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal')) {
+            e.target.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.modal.active').forEach(modal => {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        }
+    });    // ============================================
+    // CONTACT FORM
+    // ============================================
+    function initContactForm() {
+        const contactForm = document.getElementById('contactForm');        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();            alert('Thanks for reaching out! I\'ll get back to you as soon as possible.');
+            contactForm.reset();
+        });
+    }    // ============================================
+    // SCROLL ANIMATIONS
+    // ============================================
+    function initScrollAnimations() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);        document.querySelectorAll('.glass-card, .skill-card, .project-card, .cert-card, .timeline-item, .learning-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    }    // ============================================
+    // SCROLL TO SECTION
+    // ============================================
+    function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    }    // ============================================
+    // INITIALIZATION
+    // ============================================
+    document.addEventListener('DOMContentLoaded', () => {
+        createParticles();
+        initNavigation();
+        initRotatingText();
+        initSkillsTabs();
+        initContactForm();
+        initScrollAnimations();        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');                this.appendChild(ripple);                setTimeout(() => ripple.remove(), 600);
+            });
+        });        console.log('%c🚀 Cloud Fresher Portfolio', 'color: #00d4ff; font-size: 20px; font-weight: bold;');
+        console.log('%cBuilt by a fresh graduate eager to learn!', 'color: #7c3aed; font-size: 14px;');
+    });
+</script>
+</body>
+</html>
